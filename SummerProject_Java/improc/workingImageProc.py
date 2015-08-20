@@ -28,8 +28,8 @@ ret,thresh = cv2.threshold(mask,255,255,255) #originally: 127,255,0
 image, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
 
 
-max_index = max(contours, key=lambda(c): cv2.contourArea(c))
-x,y,w,h = cv2.boundingRect(contours[max_index])
+detected = max(contours, key=lambda(c): cv2.contourArea(c))
+x,y,w,h = cv2.boundingRect(contours[detected])
 
 print str([x,y,w,h])
 
