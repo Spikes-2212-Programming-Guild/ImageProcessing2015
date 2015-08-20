@@ -6,7 +6,7 @@ im = cv2.imread("bin.jpg")
 blur_wanted = True
 
 if blur_wanted:  
-    n = 1
+    n = 5
     kernel = np.ones((n,n),np.float32)/(n*n)
     im = cv2.filter2D(im,-1,kernel)
 
@@ -28,7 +28,7 @@ ret,thresh = cv2.threshold(mask,255,255,255) #originally: 127,255,0
 image, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
 
 
-max_index = max(range(0,len(contours)), key=lambda i: cv2.contourArea(contours[i]))
+max_index = max(contours, key=lambda(c): cv2.contourArea(c))
 x,y,w,h = cv2.boundingRect(contours[max_index])
 
 print str([x,y,w,h])

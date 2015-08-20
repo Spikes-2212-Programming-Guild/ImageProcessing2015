@@ -5,42 +5,49 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Piston {
 	private Solenoid solOpen, solClose;
-	public Piston(Solenoid openSolenoid, Solenoid closeSolenoid){
+
+	public Piston(Solenoid openSolenoid, Solenoid closeSolenoid) {
 		this.solClose = closeSolenoid;
 		this.solOpen = openSolenoid;
 	}
-	public Piston(int openSolenoidPort, int closeSolenoidPort){
+
+	public Piston(int openSolenoidPort, int closeSolenoidPort) {
 		this(new Solenoid(openSolenoidPort), new Solenoid(closeSolenoidPort));
 	}
-	public void open(){
+
+	public void open() {
 		solOpen.set(true);
 		solClose.set(false);
 	}
-	public void close(){
+
+	public void close() {
 		solOpen.set(false);
 		solClose.set(true);
 	}
-	public void stop(){
+
+	public void stop() {
 		solClose.set(false);
 		solOpen.set(false);
 	}
-	public void inverseSolenoids(){
+
+	public void inverseSolenoids() {
 		Solenoid tmp = solOpen;
 		solOpen = solClose;
 		solClose = tmp;
 	}
-	
-	public InverseSolenoidCommand makeNewInvesreSolenoidCommand(){
+
+	public InverseSolenoidCommand makeNewInvesreSolenoidCommand() {
 		return new InverseSolenoidCommand(this);
 	}
-	
-	public static class InverseSolenoidCommand extends Command{
+
+	public static class InverseSolenoidCommand extends Command {
 		private Piston piston;
 		private boolean finished;
+
 		public InverseSolenoidCommand(Piston piston) {
 			this.piston = piston;
 		}
-		
+
 		@Override
 		protected void initialize() {
 			finished = false;
@@ -59,7 +66,7 @@ public class Piston {
 
 		@Override
 		protected void end() {
-			
+
 		}
 
 		@Override

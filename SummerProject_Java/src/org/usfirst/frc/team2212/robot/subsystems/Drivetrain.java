@@ -11,17 +11,18 @@ import edu.wpi.first.wpilibj.Talon;
  */
 public class Drivetrain extends StoppableSubsystem {
 	GeneralGearbox left, right;
-	
-	public Drivetrain(GeneralGearbox left, GeneralGearbox right){
+
+	public Drivetrain(GeneralGearbox left, GeneralGearbox right) {
 		this.left = left;
 		this.right = right;
 	}
+
 	public void turn(double speed) {
 		left.set(speed);
 		right.set(speed);
 	}
-	
-	public void straight(double speed){
+
+	public void straight(double speed) {
 		left.set(speed);
 		right.set(-speed);
 	}
@@ -31,4 +32,3 @@ public class Drivetrain extends StoppableSubsystem {
 		straight(0);
 	}
 }
-
